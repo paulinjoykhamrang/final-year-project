@@ -1,6 +1,6 @@
-* {    
-  margin: 0 ;
-  padding: 0 ;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .App {
@@ -9,24 +9,50 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  background-color: #F7ECDE;
+  background-color: #f7ecde;
 }
 
-.heading{
-  background-color: #E9DAC1;
+.heading {
+  background-color: #e9dac1;
   padding-bottom: 50px;
+  padding-top: 20px;
   /* flex: 1; */
 }
 
-.body{
+.body {
   /* flex:1; */
 
-  margin-top: 40vh;
+  margin-top: 20vh;
   margin-bottom: 50vh;
   display: flex;
   justify-content: center;
 }
 
-label{
-  margin:0 20px;
+.button {
+  margin-left: 40px;
+  width: 60px;
+  /* height: 20px; */
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+input {
+  margin-left: 10px;
+  margin-right: 40px;
+}
+
+.unsafeWarning {
+  color: red;
+}
+
+.safeWarning {
+  color: green;
+}
+
+.warning {
+  margin-top: 15vh;
+  font-size: 36px;
 }

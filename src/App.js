@@ -1,51 +1,64 @@
-import './App.css';
-import { useState, useEffect } from 'react';
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [warning, setWarning] = useState(false);
+  const [count, setCount] = useState(1);
+  const [imp, setImp] = useState(0);
+  const [ef, setEf] = useState(0);
+  const isUnSafe = (imp, ef) => {
+    if (ef > 6.2) return true;
+    else return false;
+  };
 
-  const [warning, setWarning] = useState(false)
-  const [warningText, setWarningText] = useState('SAFE')
-  const [count, setCount] = useState(1)
-
-  const isSafe =(curr, vol, ef)=>{
-    return true  
-  }
-
-  const handleClick = (vol, curr, ef) => {
-    if(isSafe(vol, curr, ef)){
-      setWarning(true)
-    }else{
-      setWarning(false)
+  const handleClick = (imp, ef) => {
+    if (isUnSafe(imp, ef)) {
+      setWarning(true);
+    } else {
+      setWarning(false);
     }
-  }
-
-
-  useEffect(() => {
-    if(warning)setWarningText('SAFE')
-    else setWarningText('NOT SAFE')
-  }, [warning])
+    setCount(count + 1);
+  };
 
   return (
     <div className="App">
       <h1 className="heading">Final Year Project</h1>
-      <div className="body">
-        {warning && count>1 &&
-        <div>
-          <h3>NOT SAFE</h3>
+      {warning && count > 1 && (
+        <div className="warning">
+          <h3 className="unsafeWarning">NOT SAFE</h3>
         </div>
-          }
-        {!warning && count>1 &&
-          <div>
-            <h3>SAFE</h3>
-          </div>
-        }
-        <label for="voltage">Voltage</label>
-        <input type="number" name="voltage" />
-        <label for="current">Current</label>
-        <input type="number" name="current" />
-        <label for="electricField">Electric field</label>
-        <input type="text" name="electricField" />
-        <button type='submit'>Submit</button>
+      )}
+      {!warning && count > 1 && (
+        <div className="warning">
+          <h3 className="safeWarning">SAFE</h3>
+        </div>
+      )}
+      <div className="body" style={count <= 1 ? { marginTop: "40vh" } : {}}>
+        <label for="impedence">Impedence</label>
+        <input
+          type="number"
+          name="impedence"
+          onInput={(e) => {
+            setImp(e.target.value);
+          }}
+        />
+        <label for="current">Magnetic Field Intensity</label>
+        <input
+          type="number"
+          name="electricField"
+          onInput={(e) => {
+            setEf(e.target.value);
+          }}
+        />
+        <button
+          type="submit"
+          className="button"
+          onClick={() => {
+            handleClick(imp, ef);
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
